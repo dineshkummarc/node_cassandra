@@ -195,6 +195,8 @@ ul.inheritsList
 	
 	<li><a href="../symbols/ColumnFamily.html">ColumnFamily</a></li>
 	
+	<li><a href="../symbols/ConsistencyLevel.html">ConsistencyLevel</a></li>
+	
 </ul>
 <hr />
 			<!-- end publish.classesIndex -->
@@ -212,7 +214,7 @@ ul.inheritsList
 				
 				
 			
-				
+				A column family.
 				
 				
 					<br /><i>Defined in: </i> <a href="../symbols/src/lib_cassandra.js.html">cassandra.js</a>.
@@ -236,7 +238,7 @@ ul.inheritsList
 							<div class="fixedFont">
 								<b><a href="../symbols/ColumnFamily.html#constructor">ColumnFamily</a></b>(client, name)
 							</div>
-							<div class="description"></div>
+							<div class="description"><p>This class can represent either a column family or a super column family.</div>
 						</td>
 					</tr>
 				</tbody>
@@ -244,6 +246,64 @@ ul.inheritsList
 			
 
 <!-- ============================== properties summary ===================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class ColumnFamily.">
+					<caption>Field Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/ColumnFamily.html#column_type">column_type</a></b>
+								</div>
+								<div class="description">The type of the column family ('Super' or 'Standard').</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/ColumnFamily.html#isSuper">isSuper</a></b>
+								</div>
+								<div class="description">True if the column family is a super column family.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/ColumnFamily.html#name">name</a></b>
+								</div>
+								<div class="description">The name of the column family.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/ColumnFamily.html#ready">ready</a></b>
+								</div>
+								<div class="description">The state of the column family.</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
 			
 
 <!-- ============================== methods summary ======================== -->
@@ -265,7 +325,7 @@ ul.inheritsList
 							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/ColumnFamily.html#count">count</a></b>(keys, columns, options, callback)
 								</div>
-								<div class="description">Get column count from cassandra</div>
+								<div class="description">Retrieves the column count of a given key.</div>
 							</td>
 						</tr>
 					
@@ -283,7 +343,7 @@ ul.inheritsList
 							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/ColumnFamily.html#get">get</a></b>(keys, columns, options, callback)
 								</div>
-								<div class="description">Get data from cassandra</div>
+								<div class="description">Retrieves data for a given key.</div>
 							</td>
 						</tr>
 					
@@ -308,18 +368,18 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/ColumnFamily.html#remove">remove</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/ColumnFamily.html#remove">remove</a></b>(key, columns, options, callback)
 								</div>
-								<div class="description">remove data</div>
+								<div class="description">Remove data.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/ColumnFamily.html#set">set</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/ColumnFamily.html#set">set</a></b>(key, values, options, callback)
 								</div>
-								<div class="description">set (insert or update) data</div>
+								<div class="description">Sets data through insert or delete.</div>
 							</td>
 						</tr>
 					
@@ -335,9 +395,9 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/ColumnFamily.html#truncate">truncate</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/ColumnFamily.html#truncate">truncate</a></b>(name, callback)
 								</div>
-								<div class="description">truncate this column family</div>
+								<div class="description">Removes all rows in a given column.</div>
 							</td>
 						</tr>
 					
@@ -362,9 +422,21 @@ ul.inheritsList
 				</div>
 				
 				<div class="description">
-					
+					<p>This class can represent either a column family or a super column family. To
+check if the object pertains to a super column family, use the isSuper
+attribute.</p>
+
+<p>To retrieve a column family, use Client#getColumnFamily.</p>
 					
 				</div>
+				
+				
+				
+				<pre class="code">  client = new cassandra.Client("localhost:9160");
+  client.connect("keyspaceName");
+
+  family = client.getColumnFamily('pages');
+  family.set(...);</pre>
 				
 				
 				
@@ -374,16 +446,16 @@ ul.inheritsList
 						<dt class="heading">Parameters:</dt>
 						
 							<dt>
-								 <b>client</b>
+								<span class="light fixedFont">{<a href="../symbols/Client.html">Client</a>}</span>  <b>client</b>
 								
 							</dt>
-								<dd>Client</dd>
+								<dd>the Client</dd>
 						
 							<dt>
-								 <b>name</b>
+								<span class="light fixedFont">{String}</span>  <b>name</b>
 								
 							</dt>
-								<dd>name of this Column Family</dd>
+								<dd>the name of the column family</dd>
 						
 						</dl>
 					
@@ -393,11 +465,111 @@ ul.inheritsList
 					
 					
 					
+						<dl class="detailList">
+						<dt class="heading">See:</dt>
+						
+							<dd><a href="../symbols/Client.html#getColumnFamily">Client#getColumnFamily</a></dd>
+						
+						</dl>
+					
 
 			</div>
 			
 
 <!-- ============================== field details ========================== -->		
+			
+				<div class="sectionTitle">
+					Field Detail
+				</div>
+				
+					<a name="column_type"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{String}</span>
+					<b>column_type</b>
+					
+					</div>
+					<div class="description">
+						The type of the column family ('Super' or 'Standard').
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="isSuper"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Boolean}</span>
+					<b>isSuper</b>
+					
+					</div>
+					<div class="description">
+						True if the column family is a super column family.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="name"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{String}</span>
+					<b>name</b>
+					
+					</div>
+					<div class="description">
+						The name of the column family.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="ready"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Boolean}</span>
+					<b>ready</b>
+					
+					</div>
+					<div class="description">
+						The state of the column family.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					
+				
 			
 
 <!-- ============================== method details ========================= -->		
@@ -414,7 +586,8 @@ ul.inheritsList
 					
 					</div>
 					<div class="description">
-						Get column count from cassandra
+						Retrieves the column count of a given key.
+For description on the options parameter, see ColumnFamily#get.
 						
 						
 					</div>
@@ -426,28 +599,28 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>keys</b>
+									<span class="light fixedFont">{Array}</span> <b>keys</b>
 									
 								</dt>
-								<dd>row keys to fetch</dd>
+								<dd>row keys to fetch. This can be a string or array.</dd>
 							
 								<dt>
-									<b>columns</b>
+									<span class="light fixedFont">{Object}</span> <b>columns</b>
 									
 								</dt>
-								<dd>optional. which columns to retrieve</dd>
+								<dd>(Optional) which columns to retrieve</dd>
 							
 								<dt>
-									<b>options</b>
+									<span class="light fixedFont">{Object}</span> <b>options</b>
 									
 								</dt>
-								<dd>optional. valid params are start, finish, reversed, count</dd>
+								<dd>(Optional) options</dd>
 							
 								<dt>
-									<b>callback</b>
+									<span class="light fixedFont">{Function}</span> <b>callback</b>
 									
 								</dt>
-								<dd>callback function which called after data retrieval.</dd>
+								<dd>Callback function to be called after</dd>
 							
 							</dl>
 						
@@ -493,7 +666,15 @@ ul.inheritsList
 					
 					</div>
 					<div class="description">
-						Get data from cassandra
+						Retrieves data for a given key.
+You may supply options as an object literal. It can have one or more of the
+following keys:
+
+  * start
+  * finish
+  * reversed (boolean)
+  * count (number)
+  * consistencyLevel (ConsistencyLevel)
 						
 						
 					</div>
@@ -514,19 +695,19 @@ ul.inheritsList
 									<b>columns</b>
 									
 								</dt>
-								<dd>optional. which columns to retrieve</dd>
+								<dd>(optional) which columns to retrieve</dd>
 							
 								<dt>
 									<b>options</b>
 									
 								</dt>
-								<dd>optional. valid params are start, finish, reversed, count</dd>
+								<dd>(optional) valid params are start, finish, reversed, count</dd>
 							
 								<dt>
-									<b>callback</b>
+									<span class="light fixedFont">{Function}</span> <b>callback</b>
 									
 								</dt>
-								<dd>callback function which called after data retrieval.</dd>
+								<dd>Callback function to be called after</dd>
 							
 							</dl>
 						
@@ -629,17 +810,47 @@ ul.inheritsList
 					<div class="fixedFont">
 					
 					
-					<b>remove</b>()
+					<b>remove</b>(key, columns, options, callback)
 					
 					</div>
 					<div class="description">
-						remove data
+						Remove data.
+For description on the options parameter, see ColumnFamily.get.
 						
 						
 					</div>
 					
 					
 					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>key</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span> <b>columns</b>
+									
+								</dt>
+								<dd>optional. which columns to retrieve</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span> <b>options</b>
+									
+								</dt>
+								<dd>optional. valid params are start, finish, reversed, count</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>callback</b>
+									
+								</dt>
+								<dd>(Optional) Callback function to be called after</dd>
+							
+							</dl>
 						
 						
 						
@@ -654,17 +865,64 @@ ul.inheritsList
 					<div class="fixedFont">
 					
 					
-					<b>set</b>()
+					<b>set</b>(key, values, options, callback)
 					
 					</div>
 					<div class="description">
-						set (insert or update) data
+						Sets data through insert or delete.
+For super column families, values should be 2 levels down.
 						
 						
 					</div>
 					
 					
 					
+					<pre class="code">  # Sets some data for a normal column family.
+  names = client.getColumnFamily('names');
+  names.set("fruits", { "a": "apple" });</pre>
+					
+					<pre class="code">  # Sets some data for a super column family.
+  metrics = client.getColumnFamily('metrics');
+  if (metrics.isSuper) {
+    metrics.set(
+      "august_2011",
+      {
+        "10": { visits: 29, pageViews: 84 },
+        "11": { visits: 14, pageViews: 29 }
+      });
+  }</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>key</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span> <b>values</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span> <b>options</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>callback</b>
+									
+								</dt>
+								<dd>(Optional) Callback function to be called after</dd>
+							
+							</dl>
 						
 						
 						
@@ -704,17 +962,34 @@ ul.inheritsList
 					<div class="fixedFont">
 					
 					
-					<b>truncate</b>()
+					<b>truncate</b>(name, callback)
 					
 					</div>
 					<div class="description">
-						truncate this column family
+						Removes all rows in a given column.
 						
 						
 					</div>
 					
 					
 					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>name</b>
+									
+								</dt>
+								<dd>The name.</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>callback</b>
+									
+								</dt>
+								<dd>(Optional) Callback function to be called after</dd>
+							
+							</dl>
 						
 						
 						
@@ -737,7 +1012,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Aug 09 2011 04:51:16 GMT+0800 (PHT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Aug 09 2011 06:20:07 GMT+0800 (PHT)
 		</div>
 	</body>
 </html>

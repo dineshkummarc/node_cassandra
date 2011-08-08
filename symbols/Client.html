@@ -195,6 +195,8 @@ ul.inheritsList
 	
 	<li><a href="../symbols/ColumnFamily.html">ColumnFamily</a></li>
 	
+	<li><a href="../symbols/ConsistencyLevel.html">ConsistencyLevel</a></li>
+	
 </ul>
 <hr />
 			<!-- end publish.classesIndex -->
@@ -212,7 +214,7 @@ ul.inheritsList
 				
 				
 			
-				
+				A connection to a Cassandra cluster.
 				
 				
 					<br /><i>Defined in: </i> <a href="../symbols/src/lib_cassandra.js.html">cassandra.js</a>.
@@ -236,7 +238,8 @@ ul.inheritsList
 							<div class="fixedFont">
 								<b><a href="../symbols/Client.html#constructor">Client</a></b>(host)
 							</div>
-							<div class="description">node_cassandra, Apache Cassandra Client for node.js</div>
+							<div class="description"><p>To connect to a Cassandra server, pass a "host:port" to the constructor then
+use Client#connect.</div>
 						</td>
 					</tr>
 				</tbody>
@@ -244,6 +247,54 @@ ul.inheritsList
 			
 
 <!-- ============================== properties summary ===================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class Client.">
+					<caption>Field Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/Client.html#defaultCL">defaultCL</a></b>
+								</div>
+								<div class="description">The default consistency level used in transactions.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/Client.html#host">host</a></b>
+								</div>
+								<div class="description">The hostname of the Cassandra server.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/Client.html#port">port</a></b>
+								</div>
+								<div class="description">The port number as a string.</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
 			
 
 <!-- ============================== methods summary ======================== -->
@@ -263,11 +314,9 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/Client.html#addKeySpace">addKeySpace</a></b>(ksdef, callback)
+								<div class="fixedFont"><b><a href="../symbols/Client.html#addKeySpace">addKeySpace</a></b>(keyspaceName, callback)
 								</div>
-								<div class="description">add keyspace
-
-TODO work in progress</div>
+								<div class="description">Creates a keyspace with the given name.</div>
 							</td>
 						</tr>
 					
@@ -276,16 +325,16 @@ TODO work in progress</div>
 							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/Client.html#close">close</a></b>()
 								</div>
-								<div class="description">Close connection</div>
+								<div class="description">Closes the connection.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/Client.html#connect">connect</a></b>(keyspace, credential)
+								<div class="fixedFont"><b><a href="../symbols/Client.html#connect">connect</a></b>(keyspace, credentials)
 								</div>
-								<div class="description">Connect to Cassandra cluster</div>
+								<div class="description">Connects to a Cassandra cluster.</div>
 							</td>
 						</tr>
 					
@@ -294,7 +343,7 @@ TODO work in progress</div>
 							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/Client.html#consistencyLevel">consistencyLevel</a></b>(consistencyLevel)
 								</div>
-								<div class="description">Set or get default consistency level</div>
+								<div class="description">Set or get default consistency level.</div>
 							</td>
 						</tr>
 					
@@ -310,11 +359,9 @@ TODO work in progress</div>
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/Client.html#dropKeySpace">dropKeySpace</a></b>(keyspace, callback)
+								<div class="fixedFont"><b><a href="../symbols/Client.html#dropKeySpace">dropKeySpace</a></b>(keyspaceName, callback)
 								</div>
-								<div class="description">drop keyspace
-
-TODO work in progress</div>
+								<div class="description">Drops a given keyspace.</div>
 							</td>
 						</tr>
 					
@@ -323,7 +370,7 @@ TODO work in progress</div>
 							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/Client.html#getColumnFamily">getColumnFamily</a></b>(name)
 								</div>
-								<div class="description">Get column family to perform query or mutation</div>
+								<div class="description">Get column family to perform query or mutation.</div>
 							</td>
 						</tr>
 					
@@ -332,7 +379,7 @@ TODO work in progress</div>
 							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/Client.html#use">use</a></b>(keyspace, callback)
 								</div>
-								<div class="description">set which keyspace to use</div>
+								<div class="description">Sets which keyspace to use.</div>
 							</td>
 						</tr>
 					
@@ -343,6 +390,42 @@ TODO work in progress</div>
 				
 			
 <!-- ============================== events summary ======================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the events documented in the class Client.">
+					<caption>Event Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Event Attributes</th>
+							<th scope="col">Event Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Client.html#event:error">error</a></b>()
+								</div>
+								<div class="description">An error.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Client.html#event:keyspaceSet">keyspaceSet</a></b>()
+								</div>
+								<div class="description">Called when a keyspace is set.</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
 			
 
 <!-- ============================== constructor details ==================== -->		
@@ -357,9 +440,20 @@ TODO work in progress</div>
 				</div>
 				
 				<div class="description">
-					node_cassandra, Apache Cassandra Client for node.js
+					<p>To connect to a Cassandra server, pass a "host:port" to the constructor then
+use Client#connect.</p>
+
+<p>This is an EventEmitter that you may bind events to.
+See the NodeJS documentation for information on EventEmitter.
+(<a href='http://nodejs.org/docs/v0.4.10/api/all.html#events.EventEmitter'>Link</a>)</p>
 					
 				</div>
+				
+				
+				
+				<pre class="code">  # Connect to given host and keyspace.
+  var connection = new cassandra.Client("localhost:9160");
+  connection.connect("keyspaceName");</pre>
 				
 				
 				
@@ -369,10 +463,10 @@ TODO work in progress</div>
 						<dt class="heading">Parameters:</dt>
 						
 							<dt>
-								 <b>host</b>
+								<span class="light fixedFont">{String}</span>  <b>host</b>
 								
 							</dt>
-								<dd></dd>
+								<dd>A "host:port" pair.</dd>
 						
 						</dl>
 					
@@ -388,6 +482,79 @@ TODO work in progress</div>
 
 <!-- ============================== field details ========================== -->		
 			
+				<div class="sectionTitle">
+					Field Detail
+				</div>
+				
+					<a name="defaultCL"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Object}</span>
+					<b>defaultCL</b>
+					
+					</div>
+					<div class="description">
+						The default consistency level used in transactions.
+This is an object with <code>read</code> and <code>write</code> properties,
+each being a ConsistencyLevel.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="host"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{String}</span>
+					<b>host</b>
+					
+					</div>
+					<div class="description">
+						The hostname of the Cassandra server.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="port"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{String}</span>
+					<b>port</b>
+					
+					</div>
+					<div class="description">
+						The port number as a string.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					
+				
+			
 
 <!-- ============================== method details ========================= -->		
 			
@@ -399,16 +566,21 @@ TODO work in progress</div>
 					<div class="fixedFont">
 					
 					
-					<b>addKeySpace</b>(ksdef, callback)
+					<b>addKeySpace</b>(keyspaceName, callback)
 					
 					</div>
 					<div class="description">
-						add keyspace
-
-TODO work in progress
+						Creates a keyspace with the given name.
+TODO: This method is a work in progress.
 						
 						
 					</div>
+					
+					
+					
+					<pre class="code">  client.addKeySpace('metrics', function() {
+    // ...
+  });</pre>
 					
 					
 					
@@ -417,16 +589,16 @@ TODO work in progress
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>ksdef</b>
+									<span class="light fixedFont">{String}</span> <b>keyspaceName</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>The name of the keyspace to be created</dd>
 							
 								<dt>
-									<b>callback</b>
+									<span class="light fixedFont">{Function}</span> <b>callback</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>(Optional) Callback function to be called after</dd>
 							
 							</dl>
 						
@@ -447,7 +619,7 @@ TODO work in progress
 					
 					</div>
 					<div class="description">
-						Close connection
+						Closes the connection.
 						
 						
 					</div>
@@ -468,14 +640,24 @@ TODO work in progress
 					<div class="fixedFont">
 					
 					
-					<b>connect</b>(keyspace, credential)
+					<b>connect</b>(keyspace, credentials)
 					
 					</div>
 					<div class="description">
-						Connect to Cassandra cluster
+						Connects to a Cassandra cluster.
 						
 						
 					</div>
+					
+					
+					
+					<pre class="code">  # Connect to `localhost:9160` with the keyspace name `keyspaceName`.
+  var connection = new cassandra.Client("localhost:9160");
+  connection.connect("keyspaceName");</pre>
+					
+					<pre class="code">  # This example uses the given login credentials.
+  var connection = new cassandra.Client("localhost:9160");
+  connection.connect("keyspaceName", {user: 'root', password: 'thrift'});</pre>
 					
 					
 					
@@ -484,16 +666,16 @@ TODO work in progress
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>keyspace</b>
+									<span class="light fixedFont">{String}</span> <b>keyspace</b>
 									
 								</dt>
-								<dd>keyspace name to use</dd>
+								<dd>The name of the keyspace to use (optional)</dd>
 							
 								<dt>
-									<b>credential</b>
+									<span class="light fixedFont">{Object}</span> <b>credentials</b>
 									
 								</dt>
-								<dd>if given, try login into cassandra</dd>
+								<dd>If given, log into the cluster with the given username and password</dd>
 							
 							</dl>
 						
@@ -514,10 +696,22 @@ TODO work in progress
 					
 					</div>
 					<div class="description">
-						Set or get default consistency level
+						Set or get default consistency level.
+To set a consistency level, pass a consistencyLevel argument.
 						
 						
 					</div>
+					
+					
+					
+					<pre class="code">  # Sets the read/write consistency levels
+  client.consistencyLevel({
+    write: CL.ONE,
+    read:  CL.ONE
+  });
+
+  # Gets
+  cl = client.consistencyLevel();  //=> { write: CL.ONE, read: CL.ONE }</pre>
 					
 					
 					
@@ -526,10 +720,10 @@ TODO work in progress
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>consistencyLevel</b>
+									<span class="light fixedFont">{Object}</span> <b>consistencyLevel</b>
 									
 								</dt>
-								<dd>An object which has write and read consistency level.
+								<dd>(Optional) An object which has write and read consistency level.
           If given, sets default consistency level.</dd>
 							
 							</dl>
@@ -572,16 +766,21 @@ TODO work in progress
 					<div class="fixedFont">
 					
 					
-					<b>dropKeySpace</b>(keyspace, callback)
+					<b>dropKeySpace</b>(keyspaceName, callback)
 					
 					</div>
 					<div class="description">
-						drop keyspace
+						Drops a given keyspace.
+Deletes the keyspace with the given name and drops all data inside it.
 
-TODO work in progress
+TODO: This method is a work in progress.
 						
 						
 					</div>
+					
+					
+					
+					<pre class="code">  client.dropKeySpace('metrics');</pre>
 					
 					
 					
@@ -590,16 +789,16 @@ TODO work in progress
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>keyspace</b>
+									<span class="light fixedFont">{String}</span> <b>keyspaceName</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>The name of the keyspace to be dropped</dd>
 							
 								<dt>
-									<b>callback</b>
+									<span class="light fixedFont">{Function}</span> <b>callback</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>(Optional) Callback function to be called after</dd>
 							
 							</dl>
 						
@@ -620,7 +819,7 @@ TODO work in progress
 					
 					</div>
 					<div class="description">
-						Get column family to perform query or mutation
+						Get column family to perform query or mutation.
 						
 						
 					</div>
@@ -632,10 +831,10 @@ TODO work in progress
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>name</b>
+									<span class="light fixedFont">{String}</span> <b>name</b>
 									
 								</dt>
-								<dd>ColumnFamily name to get</dd>
+								<dd>The name of the column family to retrieve</dd>
 							
 							</dl>
 						
@@ -646,11 +845,18 @@ TODO work in progress
 							<dl class="detailList">
 							<dt class="heading">Returns:</dt>
 							
-								<dd>An instance of ColumnFamily</dd>
+								<dd>[ColumnFamily]</dd>
 							
 							</dl>
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">See:</dt>
+							
+								<dd><a href="../symbols/ColumnFamily.html">ColumnFamily</a></dd>
+							
+							</dl>
 						
 
 					<hr />
@@ -663,10 +869,17 @@ TODO work in progress
 					
 					</div>
 					<div class="description">
-						set which keyspace to use
+						Sets which keyspace to use.
+You should probably use {connect} instead.
 						
 						
 					</div>
+					
+					
+					
+					<pre class="code">  var connection = new cassandra.Client("localhost:9160");
+  connection.use("keyspaceName");
+  connection.connect();</pre>
 					
 					
 					
@@ -675,16 +888,16 @@ TODO work in progress
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>keyspace</b>
+									<span class="light fixedFont">{String}</span> <b>keyspace</b>
 									
 								</dt>
-								<dd>Keyspace to use</dd>
+								<dd>The name of the keyspace to use</dd>
 							
 								<dt>
-									<b>callback</b>
+									<span class="light fixedFont">{Function}</span> <b>callback</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>(Optional) Callback function to be called after</dd>
 							
 							</dl>
 						
@@ -701,6 +914,69 @@ TODO work in progress
 			
 <!-- ============================== event details ========================= -->		
 			
+				<div class="sectionTitle">
+					Event Detail
+				</div>
+				
+					<a name="event:error"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>error</b>()
+					
+					</div>
+					<div class="description">
+						An error.
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">  # Trap errors.
+  connection.on('error', function(err) {
+    console.warn("An error occured.");
+    console.warn(err);
+  });</pre>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="event:keyspaceSet"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>keyspaceSet</b>()
+					
+					</div>
+					<div class="description">
+						Called when a keyspace is set.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					
+				
+			
 			
 			<hr />
 		</div>
@@ -709,7 +985,7 @@ TODO work in progress
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Aug 09 2011 04:51:16 GMT+0800 (PHT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Aug 09 2011 06:20:07 GMT+0800 (PHT)
 		</div>
 	</body>
 </html>
